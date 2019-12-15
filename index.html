@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Space Calculator</title>
+
+    <style>
+        .container {
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid black;
+        }
+
+        .container>* {
+            width: 100%;
+        }
+
+        .container>.input>input[type='text'] {
+            width: calc(100% - 15px);
+            height: 50px;
+            margin: 5px;
+        }
+
+        .buttons>div {
+            display: flex;
+            /* border: 1px solid red; */
+        }
+
+        .buttons>div>span {
+            flex-basis: 25%;
+            /* background: aqua; */
+            border: 1px solid green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="input">
+            <input type="text">
+        </div>
+        <div class="buttons">
+            <div class="first-row">
+                <span>(</span>
+                <span>)</span>
+                <span>%</span>
+                <span>AC</span>
+            </div>
+            <div class="second-row">
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>/</span>
+            </div>
+            <div class="third-row">
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>*</span>
+            </div>
+            <div class="fourth-row">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>-</span>
+            </div>
+            <div class="fith-row">
+                <span>0</span>
+                <span>.</span>
+                <span>=</span>
+                <span>+</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
