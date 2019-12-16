@@ -33,7 +33,7 @@ findResult.addEventListener('click', function () {
 });
 
 function addToInput(el) {
-    input.value += el.innerHTML;
+    input.value += el.firstChild.innerHTML;
 
     let mathExpresssion = getMathExpression();
     let answer = calculateMathExpression(mathExpresssion);
