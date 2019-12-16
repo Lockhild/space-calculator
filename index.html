@@ -7,47 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Math JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.5/math.min.js"></script>
-
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600,700&display=swap" rel="stylesheet">
+    <!-- My styles -->
+    <link rel="stylesheet" href="style.css">
     <title>Space Calculator</title>
-
-    <style>
-        .container {
-            width: 100%;
-            max-width: 700px;
-            border: 1px solid black;
-        }
-
-        .container>* {
-            width: 100%;
-        }
-
-        .container>.input>input[type='text'] {
-            width: calc(100% - 15px);
-            height: 50px;
-            margin: 5px;
-            font-size: 22px;
-            text-align: right;
-        }
-
-        .buttons>div {
-            display: flex;
-        }
-
-        .buttons>div>span {
-            flex-basis: 25%;
-            border: 1px solid green;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 30px;
-            margin: 5px;
-        }
-
-        .response {
-            height: 30px;
-            text-align: right;
-        }
-    </style>
 </head>
 
 <body>
@@ -90,65 +54,7 @@
         </div>
     </div>
 
-    <script>
-        let input = document.getElementById('input');
-        let findResult = document.getElementById('find-result');
-        let response = document.getElementById('response');
-
-        function getMathExpression() {
-            return input.value;
-        }
-
-        function calculateMathExpression(mathExpresssion) {
-            try {
-                math.evaluate(mathExpresssion);
-            } catch (err) {
-                // if it's not a valid math expression, we will just return undefined .. instead of throwing an error
-                return
-            }
-            return math.evaluate(mathExpresssion);
-        }
-
-        function showAnswer(equalsText) {
-            let mathExpresssion = getMathExpression();
-            let answer;
-            if (mathExpresssion.includes('mod')) {
-                answer = calculateModulus(mathExpresssion);
-            } else {
-                answer = calculateMathExpression(mathExpresssion);
-            }
-            let html = `<span>${equalsText} ${answer}</span>`;
-            response.innerHTML = html;
-        }
-
-        findResult.addEventListener('click', function () {
-            showAnswer('Answer = ');
-        });
-
-        function addToInput(el) {
-            input.value += el.innerHTML;
-
-            let mathExpresssion = getMathExpression();
-            let answer = calculateMathExpression(mathExpresssion);
-
-            if (answer) {
-                showAnswer('Answer = ');
-            }
-        }
-
-        function calculateModulus(mathExpresssion) {
-            let modValues = mathExpresssion.split('mod');
-            let answer = math.mod(Number(modValues[0]), Number(modValues[1]));
-
-            return answer;
-        }
-
-        function deleteInput() {
-            input.value = '0';
-            showAnswer('Answer = ');
-        }
-
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
