@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Math JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.5/math.min.js"></script>
+
     <title>Space Calculator</title>
 
     <style>
@@ -22,16 +25,16 @@
             width: calc(100% - 15px);
             height: 50px;
             margin: 5px;
+            font-size: 22px;
+            text-align: right;
         }
 
         .buttons>div {
             display: flex;
-            /* border: 1px solid red; */
         }
 
         .buttons>div>span {
             flex-basis: 25%;
-            /* background: aqua; */
             border: 1px solid green;
             display: flex;
             justify-content: center;
@@ -39,49 +42,111 @@
             height: 30px;
             margin: 5px;
         }
+
+        .response {
+            height: 30px;
+            text-align: right;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="input">
-            <input type="text">
+            <div class="response" id="response"></div>
+            <input type="text" id="input" value="0">
         </div>
         <div class="buttons">
             <div class="first-row">
-                <span>(</span>
-                <span>)</span>
-                <span>%</span>
-                <span>AC</span>
+                <span onclick="addToInput(this)">(</span>
+                <span onclick="addToInput(this)">)</span>
+                <span onclick="addToInput(this)">mod</span>
+                <span onclick="deleteInput()">AC</span>
             </div>
             <div class="second-row">
-                <span>7</span>
-                <span>8</span>
-                <span>9</span>
-                <span>/</span>
+                <span onclick="addToInput(this)">7</span>
+                <span onclick="addToInput(this)">8</span>
+                <span onclick="addToInput(this)">9</span>
+                <span onclick="addToInput(this)">/</span>
             </div>
             <div class="third-row">
-                <span>4</span>
-                <span>5</span>
-                <span>6</span>
-                <span>*</span>
+                <span onclick="addToInput(this)">4</span>
+                <span onclick="addToInput(this)">5</span>
+                <span onclick="addToInput(this)">6</span>
+                <span onclick="addToInput(this)">*</span>
             </div>
             <div class="fourth-row">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>-</span>
+                <span onclick="addToInput(this)">1</span>
+                <span onclick="addToInput(this)">2</span>
+                <span onclick="addToInput(this)">3</span>
+                <span onclick="addToInput(this)">-</span>
             </div>
             <div class="fith-row">
-                <span>0</span>
-                <span>.</span>
-                <span>=</span>
-                <span>+</span>
+                <span onclick="addToInput(this)">0</span>
+                <span onclick="addToInput(this)">.</span>
+                <span id="find-result">=</span>
+                <span onclick="addToInput(this)">+</span>
             </div>
         </div>
     </div>
 
     <script>
+        let input = document.getElementById('input');
+        let findResult = document.getElementById('find-result');
+        let response = document.getElementById('response');
+
+        function getMathExpression() {
+            return input.value;
+        }
+
+        function calculateMathExpression(mathExpresssion) {
+            try {
+                math.evaluate(mathExpresssion);
+            } catch (err) {
+                // if it's not a valid math expression, we will just return undefined .. instead of throwing an error
+                return
+            }
+            return math.evaluate(mathExpresssion);
+        }
+
+        function showAnswer(equalsText) {
+            let mathExpresssion = getMathExpression();
+            let answer;
+            if (mathExpresssion.includes('mod')) {
+                answer = calculateModulus(mathExpresssion);
+            } else {
+                answer = calculateMathExpression(mathExpresssion);
+            }
+            let html = `<span>${equalsText} ${answer}</span>`;
+            response.innerHTML = html;
+        }
+
+        findResult.addEventListener('click', function () {
+            showAnswer('Answer = ');
+        });
+
+        function addToInput(el) {
+            input.value += el.innerHTML;
+
+            let mathExpresssion = getMathExpression();
+            let answer = calculateMathExpression(mathExpresssion);
+
+            if (answer) {
+                showAnswer('Answer = ');
+            }
+        }
+
+        function calculateModulus(mathExpresssion) {
+            let modValues = mathExpresssion.split('mod');
+            let answer = math.mod(Number(modValues[0]), Number(modValues[1]));
+
+            return answer;
+        }
+
+        function deleteInput() {
+            input.value = '0';
+            showAnswer('Answer = ');
+        }
 
     </script>
 </body>
