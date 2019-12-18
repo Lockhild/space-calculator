@@ -17,7 +17,9 @@
 <body>
     <div class="container">
         <div class="input">
-            <div class="response" id="answer"></div>
+            <div class="response">
+                <span>Answer = </span><span id="answer">0</span>
+            </div>
             <input type="text" id="input" value="0">
         </div>
         <div class="buttons">
@@ -49,7 +51,7 @@
             <div class="fith-row">
                 <div class='btn full-btn' onclick="addToInput(this)"><span>0</span></div>
                 <div class='btn full-btn' onclick="addToInput(this)"><span>.</span></div>
-                <div class='btn full-btn' id="find-result"><span>=</span></div>
+                <div class='btn full-btn' onclick="calculateResult()"><span>=</span></div>
                 <div class='btn full-btn' onclick="addToInput(this)"><span>+</span></div>
             </div>
         </div>
