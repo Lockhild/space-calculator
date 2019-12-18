@@ -17,7 +17,7 @@
 <body>
     <div class="container">
         <div class="input">
-            <div class="response" id="response"></div>
+            <div class="response" id="answer"></div>
             <input type="text" id="input" value="0">
         </div>
         <div class="buttons">
@@ -25,8 +25,8 @@
                 <div class='btn half-btn v-center' onclick="addToInput(this)"><span>(</span></div>
                 <div class='btn half-btn v-center' onclick="addToInput(this)"><span>)</span></div>
                 <div class='btn full-btn' onclick="addToInput(this)"><span>mod</span></div>
-                <div class='btn full-btn' onclick="addToInput(this)"><span>AC</span></div>
-                <div class='btn full-btn' onclick="deleteInput()"><span>CE</span></div>
+                <div class='btn full-btn' onclick="allClear()"><span>AC</span></div>
+                <div class='btn full-btn' onclick="clearEntry()"><span>CE</span></div>
             </div>
             <div class="second-row">
                 <div class='btn full-btn' onclick="addToInput(this)"><span>7</span></div>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <script src="main.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
